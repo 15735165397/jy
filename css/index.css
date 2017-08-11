@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-05-27 22:18:19
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-08-10 22:15:40
+* @Last Modified time: 2017-08-11 09:16:44
 */
 
 
@@ -168,13 +168,17 @@ a{
 }
 .section3 ul li{
 	width: 200px;
-	height: 200px;
+	height: 300px;
 	position: absolute;
 }
 .section3 ul li a{
 	display: block;
 	font-size: 24px;
 	color: #fff;
+}
+.section3 ul li a img{
+	width: 200px;
+	height: 300px;
 }
 .section3 .l1{
 	left: -300px;
