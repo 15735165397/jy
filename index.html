@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/jquery.fullPage.min.js"></script>
+	<link rel="stylesheet" href="css/jquery.fullPage.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/iconfont.css">
+	<style>
+		#menu { margin: 0; padding: 0; position: fixed; left: 10px; top: 10px; list-style-type: none; z-index: 70;}
+		#menu li { float: left; margin:  0 10px 0 0; font-size: 14px;}
+		#menu a { float: left; padding: 10px 20px; background-color: #fff; color: #333; text-decoration: none;}
+		#menu .active a { color: #fff; background-color: #333;}
+		.section { text-align: center;font-size: 50px; color: #fff;}
+		div{
+			color: #333;
+		}
+		.section1 { background: url(images/1.jpg) 50%;}
+		.section2 { background: url(images/2.jpg) 50%;}
+		.section3 { background: url(images/3.jpg) 50%;}
+	</style>
+    <body>
+
+		<ul id="menu">
+			<li data-menuanchor="page1" class="active"><a href="#page1">个人</a></li>
+			<li data-menuanchor="page2"><a href="#page2">工作</a></li>
+			<li data-menuanchor="page3"><a href="#page3">作品</a></li>
+			<li data-menuanchor="page4"><a href="#page4">联系方式</a></li>
+		</ul>
+
+		<div id="dowebok">
+			<div class="section section1">
+				<div class="left">
+    			<img src="images/0.jpg" alt="" width="300" >
+	    		</div>
+	    		<div class="right">
+	    			<div class="w">何经纬</div>
+	    			<div class="s">WEB前端工程师，热衷于网页制作，熟练运用各种前端技能进行网页制作。具有良好的学习能力，遇到问题善于利用自己周边的资源进行解决。有团队合作精神，能够相互协作和充分沟通.。</div>
+	    			
+	    		</div>
+			</div>
+			<div class="section section2">
+				<div class="top">我的工作</div>
+				<div class="box">
+					<div class="left">
+						<div class="lf">
+							<i class="iconfont icon-wangyelianjie"></i>
+						</div>
+						<div class="rg">
+							<!-- APP界面设计<br>	
+							<span>
+								为你设计最炫酷的网页
+							</span> -->
+							前后端数据交互
+						</div>
+					</div>
+					<div class="zh">
+						<div class="lf">
+							<i class="iconfont icon-diannao"></i>
+						</div>
+						<div class="rg">
+							<!-- 电脑网页设计<br>
+							<span>
+								为你设计最时尚的网页
+							</span> -->
+							PC端网页制作
+						</div>
+					</div>
+					<div class="right">
+						<div class="lf">
+							<i class="iconfont icon-shouji"></i>
+						</div>
+						<div class="rg">
+							<!-- 手机网页设计<br>
+							<span>
+								为你设计最美观的网页
+							</span> -->
+							移动端网页制作
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="section section3">
+				<div class="bb">&nbsp;
+					<div class="top3">我的作品</div>
+					<ul class="box">
+						<li class="l1"><a href=""><img src="" alt="">ktv</a></li>
+						<li class="l2"><a href=""><img src="" alt="">今日头条</a></li>
+						<li class="l3"><a href=""><img src="" alt="">嗨咔</a></li>
+						<li class="l4"><a href=""><img src="" alt="">光影</a></li>
+					</ul>
+				</div>
+				
+			</div>
+			<div class="section section4">
+			<div class="box">
+				<div class="left">
+				    联系我
+					<div class="bo libiao1">&nbsp;
+						<div class="le"><i class="iconfont icon-dianhua"></i></div>
+						<div class="re">13944448888</div>
+					</div>
+					<div class="bo libiao2">&nbsp;
+						<div class="le"><i class="iconfont icon-xinfeng"></i></div>
+						<div class="re">2574852347@qq.com</div>
+					</div>
+					<div class="bo libiao3">&nbsp;
+						<div class="le"><i class="iconfont icon-llcouponsupportedshopaddress"></i></div>
+						<div class="re">山西省太原市</div>
+					</div>
+				</div>
+				<div class="right">
+					<input class="puy1" type="text" placeholder="你的名字">
+					<input class="puy2" type="text" placeholder="你的邮箱">
+					<p class="puy3" contenteditable="true" ></p>
+					<div class="bottom">发给我</div>
+				</div>
+			</div>
+			</div>
+		</div>
+    </body>
+</html>
+<script>
+
+						// <li class="l1"><a href="xiaomi/index.html"><img src="images/xiaomi.png" alt="" width="200" height="200"></a></li>
+						// <li class="l2"><a href="huaban/index.html"><img src="images/huaban.jpg" alt="" width="200" height="200"></a></li>
+						// <li class="l3"><a href="fapai/fapai.html"><img src="images/puke.jpg" alt="" width="200" height="200"></a></li>
+						// <li class="l4"><a href="xiangce/xiance.html"><img src="images/xiangce.jpg" alt="" width="200" height="200"></a></li>
+						// <li class="l5"><a href="yinyue/5-16-yinyue.html"><img src="images/yinyue.jpg" alt="" width="200" height="200"></a></li>
+						// <li class="l6"><a href="daziyouxi/youxi.html"><img src="images/dazi.jpg" alt="" width="200" height="200"></a></li>
+						// <li class="l7"><a href="daziyouxi/liuyanban.html"><img src="images/liuyanban.jpg" alt="" width="200" height="200"></a></li>
+						// <li class="l8"><a href="tianmao/index.html"><img src="images/tianmao.png" alt="" width="200" height="200"></a></li>
+	$(function(){
+	$('#dowebok').fullpage({
+		sectionsColor: ['#1bbc9b', '#4444', '#7BAABE', '#000'],
+		anchors: ['page1', 'page2', 'page3', 'page4'],
+		menu: '#menu'
+	});
+});
+</script>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+    	*{
+    		margin: 0;
+    		padding: 0;
+    		list-style: none
+    	}
+    	body{
+    		background: #F6F6F6
+    	}
+		header{
+			width: 100%;
+			height: 100px;
+			text-align: center;
+			position: relative;
+		}
+		header .box{
+			width: 500px;
+			height: 50px;
+			position: absolute;
+			z-index: 50;
+			left: 100px;
+		}
+    </style>
+
+    <body>
+
+    	<header>分数：<span>0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    		血量：<span>10</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    		等级：<span>1</span><br>
+    		<div class="box"><img src="img/yun.png" alt="" width="500" height="50"></div>
+    	</header>
+
+    </body>
+</html>
+<script src="js/animate.js"></script>
+<script>
+	let bx=document.querySelector('.box');
+	let ww=bx.offsetWidth;/*box的宽*/
+	let zh=bx.offsetTop;/*box距左边的距离*/
+	let ckh=window.innerWidth-100;/*窗口的宽*/
+	let b=ckh-ww/*box距右边的距离*/
+	let lw=0;
+	let jz=50;
+	let t=setInterval(fn,300);
+	window.onresize=function(){
+		ckh=window.innerWidth;/*窗口的高*/
+		b=ckh-ww/*box距右边的距离*/
+	}
+	function fn(){
+		lw=lw+jz
+		if(lw>=b){
+			lw=b;
+			jz*=-1
+		}
+		if(lw<=100){
+			lw=100;
+			jz*=-1
+		}
+		bx.style.left=lw+'px';
+	}
+</script>
+<script>
+	
+	function Game(){
+	this.charArr=[['A','img/a.jpg'],['B','img/b.jpg'],['C','img/c.jpg'],['D','img/d.jpg'],['E','img/e.jpg'],['F','img/f.jpg'],['G','img/g.jpg'],['H','img/h.jpg'],['I','img/i.jpg'],['J','img/j.jpg'],['K','img/k.jpg'],['L','img/l.jpg'],['M','img/m.jpg'],['N','img/n.jpg'],['Z','img/z.jpg'],['R','img/r.jpg'],['X','img/x.jpg'],['P','img/p.jpg']];
+	this.charLength=5;
+	this.cw=window.innerWidth;
+	this.currentEle=[];
+	this.speed=5;
+	this.xl=10;
+	this.span1=document.querySelector('span');
+	this.span2=document.querySelectorAll('span')[1];
+	this.span3=document.querySelectorAll('span')[2];
+	this.fs=0;
+	this.xl=10;
+	this.gh=10;
+	this.currentpos=[];
+
+}
+Game.prototype={
+	start:function(){
+
+		this.getElements(this.charLength);
+		this.key()
+	},
+	getElements:function(length){
+		for(let i=0;i<length;i++){
+			this.getChar();
+		}
+		
+		this.drop();
+
+
+	},
+
+	checkRecerp:function(text){
+		return this.currentEle.some(function(value){
+				return value.innerText==text;
+			})
+		
+
+	},
+	checkPos:function(text){
+		return this.currentpos.some(function(value){
+			return (value+50>text&&text+50>value);
+		})
+
+
+	},
+	getChar:function(){
+		let num=Math.floor(Math.random()*18);
+
+		while(this.checkRecerp(this.charArr[num][0])){
+			num=Math.floor(Math.random()*18);
+		}
+		let ele=document.createElement("div");
+		let col=['red','blue','yellow','green','#333','#ff7600']
+		let colo=col[Math.floor(Math.random()*6)];
+		let tops=Math.random()*150+50,lefts=Math.random()*(this.cw-400)+200;
+
+		while(this.checkPos(lefts)){
+			lefts=Math.random()*(this.cw-400)+200;
+		}
+		ele.innerText=this.charArr[num][0];
+		ele.style.cssText=`background-image: url(${this.charArr[num][1]});background-size: contain;background-repeat: no-repeat;width: 50px;height: 50px; line-height: 50px;position: absolute; left: ${lefts}px;top: ${tops}px; font-size:0px; text-align: center; line-height: 50px; color:${colo}` 
+		document.body.appendChild(ele);
+		this.currentEle.push(ele);
+		this.currentpos.push(lefts)
+		
+	},
+	drop:function(){
+	
+		let self=this;
+		this.t=setInterval(function(){
+			for(let i=0;i<self.currentEle.length;i++){
+				let tops=self.currentEle[i].offsetTop+self.speed;
+				self.currentEle[i].style.top=tops+'px';
+				if(tops>500){
+					document.body.removeChild(self.currentEle[i]);
+					self.currentEle.splice(i,1)
+					self.currentpos.splice(i,1)
+					self.xl=self.xl-1;
+					self.span2.innerText=self.xl
+					if(self.xl<0){
+						let flg=window.confirm('游戏结束，是否重新开始');
+						if(flg){
+							self.chongqi()
+						}else{
+							close()
+						}
+					}
+					
+				}
+			}if(self.currentEle.length<self.charLength){
+				self.getChar()
+			}
+		},30);
+
+		
+	},
+	key:function(){
+		
+		document.body.onkeydown=function(e){
+			let code=String.fromCharCode(e.keyCode);
+			for(let i=0 ;i<this.currentEle.length;i++){
+				if(code==this.currentEle[i].innerText){
+					document.body.removeChild(this.currentEle[i]);
+					this.currentEle.splice(i,1);
+					this.fs=this.fs+1;
+					this.span1.innerText=this.fs
+					if(this.fs>this.gh){
+						this.next();
+					}
+				}
+			}
+			if(this.currentEle.length<this.charLength){
+				this.getChar();
+			}
+
+		}.bind(this)
+	},
+	chongqi:function(){
+		clearInterval(this.t);
+		for(let i=0;i<this.currentEle.length;i++){
+			document.body.removeChild(this.currentEle[i]);
+		};
+		this.charLength=5;
+		this.currentEle=[];
+		this.speed=5;
+		this.xl=10;
+		this.fs=0;
+		this.xl=10;
+		this.gh=10;
+		this.currentpos=[];
+		this.span2.innerText=this.xl
+		this.span1.innerText=this.fs
+		this.span3.innerText=this.gh/10
+		this.start()
+
+
+	},
+	next:function(){
+		clearInterval(this.t);
+		for(let i=0;i<this.currentEle.length;i++){
+			document.body.removeChild(this.currentEle[i]);
+		};
+		this.charLength=this.charLength+1;
+		this.currentEle=[];
+		this.speed=this.speed+5;
+		this.xl=this.xl+5;
+		this.gh=this.gh+10;
+		this.currentpos=[];
+		this.span2.innerText=this.xl
+		this.span1.innerText=this.fs
+		this.span3.innerText=this.gh/10
+		this.start()
+
+	}
+}
+let fd=new Game;
+	fd.start()
+
+</script>

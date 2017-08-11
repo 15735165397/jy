@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.tuku{
+			width: 800px;
+			height: 200px;
+			background: #ccc;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			flex-wrap: wrap;
+			margin: 150px auto;
+		}
+		.box{
+			width: 800px;
+			height: 400px;
+			position: absolute;
+			top: 50px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			background: rgba(0, 0, 0, 0.8);
+			text-align: center;
+			padding: 30px 0px;
+			box-sizing: border-box;
+			display: none;
+			z-index: 5;
+		}
+		.box>div{
+			width: 40px;
+			height: 40px;
+			top: 180px;
+			position: absolute;
+			line-height: 40px;
+			text-align: center;
+			color: #666;
+			font-size: 40px;
+			cursor: pointer;
+		}
+		.box .left{
+			left: 25px;
+		}
+		.box .right{
+			right: 25px;
+		}
+		.box .guanbi{
+			width: 30px;
+			height: 30px;
+			font-size: 30px;
+			line-height: 30px;
+			border-radius: 50%;
+			top: 15px;
+			right: 15px;
+			border: 2px solid #666;
+		}
+		.box .zuyo{
+			width: 600px;
+			height: 340px;
+			position: absolute;
+			left: 100px;
+			top: 30px;
+			z-index: 9
+		}
+		.box .zuyo .left{
+			width: 300px;
+			height: 340px;
+			position: static;
+			float: left;
+			/* cursor:w-resize */
+		}
+		.box .zuyo .right{
+			width: 300px;
+			height: 340px;
+			position: static;
+			float: left;
+		}
+		.box .mg{
+			width: 600px;
+			height: 340px;
+			margin: 0 auto;
+			position: static;
+		}
+    </style>
+    <body>
+    	<!-- <ul>
+    		<li><img src="img/a.jpg" alt="" width="160"></li>
+    		<li><img src="img/b.jpg" alt="" width="160"></li>
+    		<li><img src="img/c.jpg" alt="" width="160"></li>
+    		<li><img src="img/d.jpg" alt="" width="160"></li>
+    	</ul> -->
+    	<div class="tuku">
+    		<img src="img/a.jpg" alt="" width="160">
+    		<img src="img/b.jpg" alt="" width="160">
+    		<img src="img/c.jpg" alt="" width="160">
+    		<img src="img/d.jpg" alt="" width="160">
+    	</div>
+    	<div class="box">
+    		<div class="mg">
+    			<img src="" alt="" width="600">
+    		</div>
+    		<div class="guanbi">×</div>
+    		<div class="left iconfont icon-shangyige"></div>
+    		<div class="right iconfont icon-guanbi01"></div>
+			<div class="zuyo">
+				<div class="left"></div>
+				<div class="right"></div>
+			</div>
+    	</div>
+    </body>
+</html>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script>
+	let imgxiao=$('img');
+	let imgda=$('.box img');
+	let guanbi=$('.box>.guanbi');
+	let left=$('.box .left');
+	let right=$('.box .right');
+	// console.log(left)
+	imgxiao.on('click',function(){
+		var index=$(this).index();
+		console.log(imgxiao[index]);
+		$('.box').fadeIn();
+		imgda[0].src=imgxiao[index].src;
+		left.on('click',function(){
+			console.log(index)
+			index--;
+			console.log(index)
+			if(index<0){
+				index=imgxiao.length-2;
+				console.log(index)
+			}
+			imgda[0].src=imgxiao[index].src;
+		})
+		right.on('click',function(){
+			index++;
+			if(index==imgxiao.length-1){
+				index=0;
+			}
+			imgda[0].src=imgxiao[index].src;
+		})
+	})
+	guanbi.click(function(){
+		$('.box').fadeOut();
+	})
+	// $('.box').click(function(){
+	// 	$('.box').fadeOut();
+	// })
+	// $('.box').on('click',function(){
+	// 	$('.box').fadeOut();
+	// })
+	$(document).mousedown(false);
+</script>

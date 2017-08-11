@@ -1,0 +1,425 @@
+/*
+* @Author: Administrator
+* @Date:   2017-05-27 22:18:19
+* @Last Modified by:   Administrator
+* @Last Modified time: 2017-08-10 22:15:40
+*/
+
+
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.section{
+	position: relative;
+}
+.section1 .left{
+	width: 300px;
+	height: 300px;
+	position: absolute;
+	top: 200px;
+	left: 50px;
+	opacity: 0;
+	transition: 1.7s all ease;
+}
+.active .left{
+	opacity: 1;
+	left: 100px;
+}
+.section1 .right{
+	width: 600px;
+	height: 300px;
+	text-align: left;
+	top: 0px;
+	left: 450px;
+	position: absolute;
+	opacity: 0;
+	transition: 1.7s all ease;
+}
+.active .right{
+	opacity: 1;
+	top: 200px;
+}
+.section1 .left img{
+	display: block;
+	margin: 0 auto;
+}
+.section1 .right .w{
+	font-size: 40px;
+}
+.section1 .right .s{
+	font-size: 20px;
+	margin: 40px 0px;
+}
+.section1 .x{
+	width: 250px;
+	height: 80px;
+	background: #3DA4CD;
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+	line-height: 80px;
+	border-radius: 10px;
+	cursor: pointer;
+	position: absolute;
+	top: 380px;
+	left: 1000px;
+	opacity: 0;
+	transition: 1s all ease;
+}
+.active .x{
+	left: 450px;
+	opacity: 1;
+}
+.section2 .top{
+	position: absolute;
+	top: 000px;
+	left: 0;
+	right: 0;
+	opacity: 0;
+	transition: 1.5s all ease;
+}
+.active .top{
+	top: 200px;
+	opacity: 1;
+}
+.section2 .box{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 1000px;
+	height: 100px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-around;
+	transition: 1.5s all ease;
+	opacity: 0;
+}
+.active .box{
+	bottom: 200px;
+	opacity: 1;
+}
+.section2 .box>div{
+	flex-grow: 1;
+	font-size: 30px;
+	text-align: left;
+}
+.section2 .box>div .lf{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	border: 2px solid #333;
+	float: left;
+	font-size: 40px;
+	line-height: 60px;
+	text-align: center;
+	margin-right: 20px;
+	cursor: pointer;
+}
+.section2 .box>div .lf:hover{
+	color: #fff;
+	border-color: #fff;
+}
+.section2 .box>div .rg{
+	float: left;
+	cursor: pointer;
+	line-height: 60px;
+}
+.section2 .box div span{
+	font-size: 20px;
+}
+.section3 {
+	overflow: hidden;
+}
+.section3 .bb{
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	font-size: 0;
+}
+.section3 .top3{
+	position: absolute;
+	top: 0;
+	font-size: 40px;
+	left: 0;
+	right: 0;
+	color: #000;
+	opacity: 0;
+	transition: 1.5s all ease;
+}
+.active .top3{
+	opacity: 1;
+	top: 50px;
+}
+.section3 ul{
+	/* margin-top: 100px; */
+	width: 950px;
+	height: 450px;
+	position: absolute;
+	top: 150px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+.section3 ul li{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+}
+.section3 ul li a{
+	display: block;
+	font-size: 24px;
+	color: #fff;
+}
+.section3 .l1{
+	left: -300px;
+	opacity: 0;
+	transition: 1.5s all ease;
+}
+.active .l1{
+	left: 0;
+	opacity: 1;
+}
+.section3 .l2{
+	top: -300px;
+	left: -50px;
+	opacity: 0;
+	transition: 1.5s all ease;
+}
+.active .l2{
+	top: 0;
+	left: 250px;
+	opacity: 1;
+}
+.section3 .l3{
+	top: -300px;
+	left: 800px;
+	opacity: 0;
+	transition: 1.5s all ease;
+}
+.active .l3{
+	top: 0;
+	left: 500px;
+	opacity: 1;
+}
+.section3 .l4{
+	top: 0;
+	left: 1050px;
+	opacity: 0;
+	transition: 1.5s all ease;
+}
+.active .l4{
+	left: 750px;
+	opacity: 1;
+}
+.section3 .l5{
+	top: 250px;
+	left: -300px;
+	opacity: 0;
+	transition: 1.5s all ease;
+}
+.active .l5{
+	left: 0;
+	opacity: 1;
+}
+.section3 .l6{
+	top: 550px;
+	left: -50px;
+	opacity: 0;
+	transition: 1.5s all ease;
+}
+.active .l6{
+	top: 250px;
+	left: 250px;
+	opacity: 1;
+}
+.section3 .l7{
+	top: 550px;
+	left: 800px;
+	opacity: 0;
+	transition: 1.5s all ease;
+}
+.active .l7{
+	top: 250px;
+	left: 500px;
+	opacity: 1;
+}
+.section3 .l8{
+	background: blue;
+	top: 250px;
+	left: 1050px;
+	opacity: 0;
+	transition: 1.5s all ease;
+}
+.active .l8{
+	left: 750px;
+	opacity: 1;
+}
+.section4 .box{
+	width: 1000px;
+	height: 450px;
+	margin: 0 auto;
+}
+.section4 .box .left{
+	width: 500px;
+	height: 400px;
+	float: left;
+	text-align: left;
+	font-size: 30px;
+	color: #fff;
+	position: relative;
+	padding-top: 10px;
+	left: 0
+}
+.section4 .box .right{
+	width: 500px;
+	float: right;
+	position: relative;
+	top: 0;
+}
+
+
+.section4 .box .left .bo .le{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	border: 2px solid #fff;
+	font-size: 40px;
+	line-height: 60px;
+	text-align: center;
+	color: #fff;
+	float: left;
+	margin-right: 15px;
+}
+.section4 .box .left .bo .re{
+	float: left;
+	height: 60px;
+	line-height: 60px;
+	color: #fff;
+}
+.section4 .box .left .bo{
+	width: 500px;
+	height: 100px;
+	position: absolute;
+}
+.section4 .libiao1{
+	top: 70px;
+	left: -500px;
+	opacity: 0;
+	transition: 1s all ease;
+}
+.active .libiao1{
+	left: 0;
+	opacity: 1
+}
+.section4 .libiao2{
+	top: 170px;
+	left: -500px;
+	opacity: 0;
+	transition: 1s all ease;
+}
+.active .libiao2{
+	left: 0;
+	opacity: 1
+}
+.section4 .libiao3{
+	top: 270px;
+	left: -500px;
+	opacity: 0;
+	transition: 1s all ease;
+}
+.active .libiao3{
+	left: 0;
+	opacity: 1
+}
+.section4 .box .right input:nth-child(1){
+	width: 500px;
+	height: 50px;
+	box-sizing: border-box;
+	outline: none;
+	background: #000;
+	border: 2px solid #aaa;
+	color: #aaa;
+	font-size: 12px
+
+}
+.section4 .box .right input:nth-child(2){
+	width: 500px;
+	height: 50px;
+	box-sizing: border-box;
+	outline: none;
+	background: #000;
+	border: 2px solid #aaa;
+	color: #aaa;
+	font-size: 12px
+}
+.section4 .box .right p{
+	width: 500px;
+	height: 150px;
+	box-sizing: border-box;
+	outline: none;
+	background: #000;
+	border: 2px solid #aaa;
+	line-height: 12px;
+	color: #aaa;
+	font-size: 12px;
+	text-align: left
+}
+.section4 .box .right .bottom{
+	margin-top: 50px;
+	font-size: 20px;
+	width: 500px;
+	height: 50px;
+	background: #D43F52;
+	line-height: 50px;
+	color: #fff;
+}
+.section4 .puy1{
+	position: absolute;
+	top: 0;
+	left: 500px;
+	opacity: 0;
+	transition: 1s all ease;
+}
+.active .puy1{
+	left: 0;
+	opacity: 1;
+}
+.section4 .puy2{
+	position: absolute;
+	top: 80px;
+	left: 500px;
+	opacity: 0;
+	transition: 1s all ease;
+}
+.active .puy2{
+	left: 0;
+	opacity: 1;
+}
+.section4 .puy3{
+	position: absolute;
+	top: 160px;
+	left: 500px;
+	opacity: 0;
+	transition: 1s all ease;
+}
+.active .puy3{
+	left: 0;
+	opacity: 1;
+}
+.section4 .bottom{
+	position: absolute;
+	top: 700px;
+	left: 0;
+	opacity: 0;
+	transition: 1s all ease;
+}
+.active .bottom{
+	top: 300px;
+	opacity: 1;
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+    	body{
+			background: green;
+    	}
+		.table{
+			width: 900px;
+			height: 640px;
+			position: relative;
+			/* background-image: url('img/12h.jpg');
+			background-size: cover;
+			background-position: center; */
+			/* border: 2px solid #666; */
+			margin: 0 auto;
+		}
+		.table .poke{
+			width: 106.25px;
+			height: 150px;
+			position: absolute;
+			left: 400px;
+			top: 25px;
+			opacity: 0;
+			/* border: 1px solid #666; */
+		}
+		.table .act{
+			background: blue;
+			border: 2px solid blue;
+			z-index: 1;
+		}
+		.table .left,.table .right{
+			width: 80px;
+			height: 40px;
+			position: absolute;
+			top: 180px;
+			left: 12px;
+			background: blue;
+			text-align: center;
+			line-height: 40px;
+			color: #fff;
+			font-size: 30px;
+			cursor: pointer;
+		}
+		.table .right{
+			top: 240px;
+		}
+    </style>
+    <body>	
+    	<div class="table">
+    		<div class="left">&lt;</div>
+    		<div class="right">&gt;</div>
+    	</div>
+    </body>
+</html>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script>
+	$(function(){
+		let poke=[];
+		let biao={};
+		let color=['h','s','c','d'];
+		for(let i=0;i<52;i++){
+			let huase=color[Math.floor(Math.random()*4)];
+			let shuzi=Math.floor(Math.random()*13+1);
+			while(biao[huase+'_'+shuzi]){
+				huase=color[Math.floor(Math.random()*4)];
+				shuzi=Math.floor(Math.random()*13+1);
+
+			}
+			biao[huase+'_'+shuzi]=true
+			poke.push({huase,shuzi})
+			// console.log(huase,shuzi)
+		}
+		console.log(poke)
+		let index=0
+		for(let i=0;i<7;i++){
+			for( let j=0;j<=i;j++){
+				let item=poke[index];
+				index++;
+				$('<div>').addClass('poke')
+				// .html(`${item.shuzi}--${item.huase}`)
+				.css({backgroundImage: `url(img/${item.shuzi}${item.huase}.jpg)`,backgroundSize: 'cover',backgroundPosition: 'center'})
+				.prop('id',i+'_'+j)
+				.delay(60*index)
+				.data('num',item.shuzi)
+				.animate({left:400-i*53+106.25*j,top:75*i+25,opacity:1})
+				.appendTo('.table')
+			}
+		}
+		for(index;index<poke.length;index++){
+			let item=poke[index];
+			$('<div>').addClass('poke')
+				// .html(`${item.shuzi}--${item.huase}`)
+			.css({backgroundImage: `url(img/${item.shuzi}${item.huase}.jpg)`,backgroundSize: 'cover',backgroundPosition: 'center'})
+			.delay(60*index)
+			.addClass('zuo')
+			.data('num',item.shuzi)
+			.animate({left:0,top:0,opacity:1})
+			.appendTo('.table')
+		}
+		let first=null;
+		$('.poke').click(function(){
+			let ids=$(this).prop('id').split('_');
+			let id1=$(`#${parseInt(ids[0])+1}_${ids[1]}`)
+			let id2=$(`#${parseInt(ids[0])+1}_${parseInt(ids[1])+1}`)
+			console.log(id1)
+			console.log(id2)
+			if($(id1).length==1||$(id2).length==1){
+				return
+			}
+			$(this).toggleClass('act');
+			if($(this).hasClass('act')){
+				$(this).animate({top:'-=20'})
+			}else{
+				$(this).animate({top:'+=20'})
+			}
+			if(!first){
+			 	first = this;
+			 	if($(first).data('num')==13){
+			 		$('.act').animate({top:0,left:600},function(){
+			 			$(this).remove();
+			 		})
+			 	first = null;
+			 	}
+			}else{
+			 	let sum = $(first).data('num')+$(this).data('num')
+			 	if(sum == 13){
+			 		$('.act').animate({top:0,left:600},function(){
+			 			$(this).remove();
+			 		})
+			 	}else{
+			 		$('.act').animate({top:'+=20'}).removeClass('act')
+			 	}
+			 	first = null;
+			}
+		});
+		let z=1
+		$('.right').on('click',function(){
+			z++;
+			$('.zuo:last')
+			.removeClass('zuo')
+			.addClass('you')
+			.css({zIndex:z})
+			.animate({left:'+=150'})
+		})
+		$('.left').on('click',function(){
+			// alert(1)
+			let you=$('.you')
+			console.log(you)
+			if(you.length==0){
+				return
+			}
+			for(let i=you.length-1;i>=0;i--){
+				z--;
+				$(you[i])
+				.delay(200*i)
+				.animate({left:'-=150'},function(){
+					$(this).css({zIndex:0})
+				})
+				.addClass('zuo')
+				.removeClass('you')
+			}
+		})
+		$(document).mousedown(false);
+	})
+</script>
+<script>
+	/*
+	$('.poke').click(function(){
+		let coords=$(this).prop('id').split('_');
+		console.log(parseInt(coords[0])+1,coords[1])
+		console.log(parseInt(coords[0])+1,parseInt(coords[1])+1)
+		let ele=$(`#${parseInt(coords[0])+1}_${parseInt(coords[1])+1}`)
+		let ele1=$(`#${parseInt(coords[0])+1}_${parseInt(coords[1])+1}`)
+		console.log(ele.length)
+		if(ele.length==1&&ele1.length==1){
+
+		}
+		$(this).toggleClass('active');
+		if($(this).hasClass('active')){
+			$(this).animate({top:'-=20'})
+		}else{
+			$(this).animate({top:'+=20'})
+		}
+	})
+	 */
+</script>

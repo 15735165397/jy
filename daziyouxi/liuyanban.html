@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+    	*{
+    		margin: 0;
+    		padding: 0;
+    		list-style: none
+    	}
+    	.box{
+    		width: 310px;
+    		height: 600px;
+    		padding: 5px;
+			border: 2px solid blue;
+			box-sizing: border-box;
+			margin: 0 auto;
+    	}
+    	.top{
+    		width: 295px;
+    		height: 20px;
+    		text-align: right;
+    		line-height: 20px
+    	}
+    	textarea{
+    		width: 295px;
+    		height: 150px;
+			border: 2px solid red;
+			box-sizing: border-box;
+			margin-bottom: 5px;
+    	}
+    	ul{
+
+    		margin-top: 50px;
+    	}
+    	ul li{
+    		width: 295px;
+    		height: auto;
+    		min-height: 30px;
+    		border: 2px solid green;
+			box-sizing: border-box;
+			margin-bottom: 5px;
+			word-wrap: break-word
+    	}
+    	button{
+    		width: 50px;
+    		height: 30px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+    		text-align: center;
+			line-height: 30px;
+			float: right;
+			margin-bottom: 10px;
+    	}
+		
+    </style>
+    <body>
+	    <div class="box">
+	    	<div class="top">已写<span>0</span>字还可以写<span>100字</span></div>
+	    	<textarea name="" id="" cols="30" rows="10" maxlength="100"></textarea>
+	    	<button>确定</button>
+	    	<br>
+		    <ul></ul>
+	    </div>
+    
+    </body>
+</html>
+
+<script>
+	let text=document.querySelector('textarea');
+	let button=document.querySelector('button')
+	let ul=document.querySelector('ul')
+	let span1=document.querySelector('span');
+	let span2=document.querySelectorAll('span')[1]
+	text.onkeyup=function(){
+		span1.innerText=text.value.length;
+		span2.innerText=100-text.value.length;
+	}
+	// button.onclick=function(){
+	// 	let li=document.createElement('li');
+	// 		li.innerText=text.value
+	// 		text.value=''
+	// 		ul.appendChild(li)
+	// }
+	// text.onkeydown=function(e){
+	// 	if(e.keyCode==13&&e.shiftKey){
+	// 		let li=document.createElement('li');
+	// 		li.innerText=text.value
+	// 		text.value=''
+	// 		ul.appendChild(li)
+	// 	}
+	// }
+	text.onkeydown=button.onclick=function(e){
+		if(text.value.trim()==''){
+			return
+		}
+		if(e.keyCode==13&&e.shiftKey){
+			let li=document.createElement('li');
+			li.innerText=text.value
+			text.value=''
+			ul.appendChild(li);
+			span1.innerText=text.value.length;
+			span2.innerText=100-text.value.length;
+		}
+		else if(e.type=='click'){
+			let li=document.createElement('li');
+			li.innerText=text.value
+			text.value=''
+			ul.appendChild(li)
+			span1.innerText=text.value.length;
+			span2.innerText=100-text.value.length;
+		}
+	}
+
+
+</script>

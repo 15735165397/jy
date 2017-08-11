@@ -1,0 +1,139 @@
+/*
+* @Author: Administrator
+* @Date:   2017-05-16 16:36:01
+* @Last Modified by:   Administrator
+* @Last Modified time: 2017-06-01 00:43:27
+*/
+*{
+	margin:  0;
+	padding: 0;
+	list-style: none;
+}
+body{
+	background-image: url('../img/yy.jpg');
+	background-size: cover;
+	background-position: center;
+}
+audio{
+	display: none;
+}
+.top{
+	width: 100%;
+	/* height: auto; */
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	/* background: #ccc; */
+	text-align: center;
+	font-size: 20px;
+}
+.bottom{
+	width: 100%;
+	height: 100px;
+	position: fixed;
+	bottom: 0;
+	background: #000;
+}
+.geming{
+	width: 400px;
+	height: 50px;
+	margin: 0 auto;
+	font-size: 36px;
+}
+.geshou{
+	width: 400px;
+	height: 50px;
+	margin: 0 auto;
+	font-size: 30px
+}
+.geci{
+	width: 400px;
+	height: auto;
+	margin: 0 auto;
+}
+.geci ul li{
+	height: auto;
+	margin: 10px 0;
+}
+.geci ul .hot{
+	color: #fff;
+	font-size: 24px;
+}
+.footer{
+	width: 1200px;
+	height: 100px;
+	color: #fff;
+	line-height: 100px;
+	text-align: center;
+	margin: 0 auto;
+}
+.left{
+	height: 100px;
+	width: 240px;
+	float: left;
+	font-size: 50px
+}
+.zhjian{
+	height: 100px;
+	width: 800px;
+	float: left;
+	/* font-size: 100px */
+}
+.right{
+	height: 100px;
+	width: 200px;
+	float: left;
+	/* font-size: 100px */
+}
+.zhjian .tu{
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+.zhjian .shi{
+	width: 700px;
+	height: 100px;
+	float: left;
+}
+.zhjian .shi .time{
+	width: 700px;
+	height: 80px;
+	text-align: left;
+}
+.zhjian .shi .time .gms{
+	width: 300px;
+	height: 100px;
+	float: left;
+	font-size: 24px;
+	line-height: 30px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.zhjian .shi .time .tame{
+	width: 300px;
+	height: 100px;
+	text-align: right;
+	float: right;
+	line-height: 120px;
+	font-size: 24px
+}
+.zhjian .shi .jindu{
+	width: 700px;
+	height: 4px;
+	background: #ccc;
+}
+.zhjian .shi .jindu .jd{
+	width: 0;
+	height: 4px;
+	background: blue;
+}
+.right .lb{
+	width: 20px;
+	height: 100px;
+	float: left: 
+}
+.right .lb{
+	width: 100px;
+	height: 100px;
+	float: left: 
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+
+	    .box{
+	    	overflow: hidden;
+	    	width: 500px;
+			text-align: center;
+	    }
+		
+		table{
+			border-collapse: collapse;
+			border: 1px solid #333;
+		}
+		th{
+			width: 100px;
+			border: 1px solid #333;
+		}
+		tr{width: 500px;
+			height: 50px;
+
+			transition: 1s all ease;
+		}
+		td{
+			width: 100px;
+			height: 50px;
+
+			border: 1px solid #333;
+		}
+		input{
+			width: 100px;
+			height: 50px;
+			text-align: center;
+		}
+		.jia{
+			border: 1px solid #333;
+			margin-top: 2px;
+			width: 100px;
+			height: 50px;
+			float: right;
+			line-height: 50px;
+		}
+		button{
+			width: 100px;
+			height: 50px;
+			outline: none;
+			display: block;
+			border: none;
+		}
+    </style>
+    <body>
+    	<div class="box">
+
+    		<table>
+    		<h3>调查表</h3>
+    		<tr><th>名字</th><th>年龄</th><th>身份</th><th>地址</th><th class="xz">操作</th></tr>
+    		<tbody>
+    			
+    		</tbody>
+    		<!-- <h1></h1>
+    		<tr>名字</tr><tr>年龄</tr><tr>身份</tr><tr>地址</tr><tr>删除</tr> -->
+    		<!-- <h3>调查表</h3>
+    		<tr><th>名字</th><th>年龄</th><th>身份</th><th>地址</th><th class="xz">操作</th></tr> -->
+    	<!-- 	<tr><td>宁缺</td><td>19</td><td>国师</td><td>将夜</td><td><button class="xz">删除</button></td></tr>
+    		<tr><td>徐凤年</td><td>18</td><td>王爷</td><td>北凉</td><td><button class="xz">删除</button></td></tr> -->
+    		<!-- <tr><td>003</td><td>20</td><td>kh</td><td>xx</td><td><button class="xz">删除</button></td></tr>
+    		<tr><td>004</td><td>16</td><td>dd</td><td>66</td><td><button class="xz">删除</button></td></tr> -->
+    		</table>
+			<div class="jia">添加</div>
+    	</div>
+
+    </body>
+
+</html>
+<script>
+	// let shuzu=[ {"name":"张三","age":"16","aa":"护卫","dd":"天界","cc":"删除"},
+	// 			{"name":"张四","age":"18","aa":"护卫","dd":"天界","cc":"删除"},
+	// 			{"name":"张无","age":"20","aa":"护卫","dd":"天界","cc":"删除"},
+	// 			{"name":"张六","age":"22","aa":"护卫","dd":"天界","cc":"删除"}]
+	// let table=document.querySelector('tbody');
+	// let jia=document.querySelector('.jia');
+	// table.ondblclick=function(e){
+	// 	let obj=e.target;
+	// 	if(obj.nodeName=='TD'&&obj.className!='xz'){
+	// 			let nei=obj.innerText;
+	// 		let input=document.createElement('input');
+	// 		input.value=nei;
+	// 		obj.innerText='';
+	// 		obj.appendChild(input);
+	// 		input.onblur=function(e){
+	// 		let newn=input.value;
+	// 		obj.removeChild(input)
+	// 		obj.innerText=newn.trim()?newn.trim():nei;
+	// 		}
+	// 	}else if(obj.nodeName=='BUTTON'){
+			
+		
+	// 	let sh=obj.parentNode.parentNode;
+	// 	// table.removeChild(sh)
+	// 	sh.style.transform='translateX(600px)'
+ //            sh.addEventListener('webkitTransitionEnd',function(){
+ //                table.removeChild(sh)
+ //            })
+		
+	// 	}
+		
+	// }
+	
+
+	// jia.onclick=function(){
+	// 	let xin=document.createElement('tr');
+	// 	xin.innerHTML=`<td>004</td><td>16</td><td>身份</td><td>地址</td><td><button class="xz">删除</button></td>`
+	// 	table.appendChild(xin);
+	// }
+	// shuzu.forEach(function(value){
+	// 	let tr=document.createElement('tr');
+	// 	tr.innerHTML=`  <td>${value.name}</td>
+	// 					<td>${value.age}</td>
+	// 					<td>${value.aa}</td>
+	// 					<td>${value.dd}</td>
+	// 					<td><button class="xz">删除</button></td>`
+	// 	table.appendChild(tr)
+	// })
+
+
+</script>
+<script>
+	let table=document.querySelector('tbody');
+	let jia=document.querySelector('.jia');
+	load()
+	function init(){
+		let data=localStorage.student;
+		if(!date){
+			let student=`[ {"name":"张三","age":"16","aa":"护卫","dd":"天界","cc":"删除"},
+						{"name":"张四","age":"18","aa":"护卫","dd":"天界","cc":"删除"},
+						{"name":"张无","age":"20","aa":"护卫","dd":"天界","cc":"删除"},
+						{"name":"张六","age":"22","aa":"护卫","dd":"天界","cc":"删除"}
+						{"name":"张七","age":"22","aa":"护卫","dd":"天界","cc":"删除"}
+						{"name":"张八","age":"22","aa":"护卫","dd":"天界","cc":"删除"}]`
+			localStorage.student=JSON.stringify(student);
+		}
+	}
+	function load(){
+	let data=localStorage.student;
+	if(!data){
+		init();
+	}
+	data=JSON.parse(localStorage.student);
+	// console.log(data);
+	table.innerHTML='';
+	data.forEach(function(value,index){
+		let tr=document.createElement('tr');
+		tr.id=index;
+		tr.innerHTML=`
+			<td type='name'>${value.name}</td>
+			<td type='age'>${value.age}</td>
+			<td type='aa'>${value.aa}</td>
+			<td type='dd'>${value.dd}</td>
+			<td class="cc"><button>删除</button></td>
+		`
+		table.appendChild(tr)
+	})
+}
+	table.ondblclick=function(e){
+//【更新】
+	let obj=e.target;
+	if(obj.nodeName=='TD'&&obj.className!='xz'){
+		let input=document.createElement('input');
+		let oldv=obj.innerText;
+		obj.innerText='';
+		input.value=oldv;
+		obj.appendChild(input);
+		input.focus();//立即获取焦点
+		input.onblur=function(){
+			let newv=input.value;
+			obj.removeChild(input);
+			obj.innerText=newv.trim()?newv.trim():oldv;
+			let id=obj.parentNode.id;
+			let type=obj.getAttribute('type');
+			// 获取自定义属性
+			updata(id,type,newv);
+		}
+	}
+
+if(obj.nodeName=='BUTTON'){
+		// console.log(obj.parentNode.parentNode);
+		let tr=obj.parentNode.parentNode;
+		tr.style.transform='translateX(600px)';
+		tr.addEventListener('webkitTransitionEnd',function(){
+			table.removeChild(tr);
+			console.log(table)
+			console.log(tr)
+		},false)
+		let id=tr.id;
+		xz(id);
+	}
+}
+jia.onclick=function(){
+	let tr=document.createElement('tr');
+	tr.innerHTML=`
+		<td>张三三</td>
+		<td>17</td>
+		<td>护卫</td>
+		<td>天界</td>
+		<td class="xz"><button>删除</button></td>
+	`
+	table.appendChild(tr)
+	jiaData({'name':'张三三','age':'17','aa':'护卫','dd':'天界'});
+}
+// 编辑
+function updata(id,type,value){
+	let data=JSON.parse(localStorage.student);
+	data[id][type]=value;
+	localStorage.student=JSON.stringify(data);
+}
+// 删
+function xz(id){
+	let data=JSON.parse(localStorage.student);
+	data.splice(id,1);
+	localStorage.student=JSON.stringify(data);
+	load();
+}
+// 加
+function jiaData(obj){
+	let data=JSON.parse(localStorage.student);
+	data.push(obj);
+	localStorage.student=JSON.stringify(data);
+	load();
+}
+
+
+	// localStorage.student=`[ {"name":"张三","age":"16","aa":"护卫","dd":"天界","cc":"删除"},
+	// 					{"name":"张四","age":"18","aa":"护卫","dd":"天界","cc":"删除"},
+	// 					{"name":"张无","age":"20","aa":"护卫","dd":"天界","cc":"删除"},
+	// 					{"name":"张六","age":"22","aa":"护卫","dd":"天界","cc":"删除"}]`
+	// let student=JSON.parse(localStorage.student);
+	// localStorage.student=JSON.stringify(student);
+
+	// ben()
+	// function ben() {
+	//     let student=window.localStorage;
+	//     console.log(student)
+	// 	if(!student){
+ //           localStorage.student=[ {"name":"张三","age":"16","aa":"护卫","dd":"天界","cc":"删除"},
+	// 					{"name":"张四","age":"18","aa":"护卫","dd":"天界","cc":"删除"},
+	// 					{"name":"张无","age":"20","aa":"护卫","dd":"天界","cc":"删除"},
+	// 					{"name":"张六","age":"22","aa":"护卫","dd":"天界","cc":"删除"}]
+ //           // let student=JSON.parse(localStorage.student);
+ //           // localStorage.student=JSON.stringify(student);
+	// 	}else if(student){
+
+	// 	}
+ //   }
+	// // student.push({"name":"张七","age":"22","aa":"护卫","dd":"天界","cc":"删除"})
+	// student.forEach(function(value){
+	// 	let tr=document.createElement('tr');
+	// 	tr.innerHTML=`  <td>${value.name}</td>
+	// 					<td>${value.age}</td>
+	// 					<td>${value.aa}</td>
+	// 					<td>${value.dd}</td>
+	// 					<td><button class="xz">删除</button></td>`
+	// 	table.appendChild(tr)
+	// })
+
+	// console.log(student)
+</script>
+
+

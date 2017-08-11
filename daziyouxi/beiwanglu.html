@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		body{
+			background: #ccc;
+		}
+		header{
+			width: 100%;
+			height: 60px;
+			background: red;
+			font-size: 0;
+			margin-bottom: 10px;
+		}
+		header .box{
+			width: 400px;
+			height: 40px;
+			margin: 0 auto;
+			margin-top: 10px;
+			background: #fff;
+		}
+		header .box input{
+			width: 400px;
+			height: 40px;
+			outline: none;
+		}
+		.top, .bottom{
+			position: relative;
+			width: 400px;
+			margin: 0 auto;
+		}
+		p{
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 20px;
+			font-size: 20px;
+			background: red;
+			position: absolute;
+			right: 0px;
+			top: 0;
+		}
+		ul{
+			width: 400px;
+			margin: 0 auto;
+		}
+		li{
+			width: 400px;
+			min-height: 30px;
+			height: auto;
+			line-height: 30px;
+			background: #fff;
+			margin: 10px 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		ul li input{
+			width: 15px;
+			height: 15px;
+		}
+		ul li p{
+			display: block;
+			position: static;
+			border-radius: 0;
+			flex-grow: 1;
+			background: none;
+		}
+		button{
+			width: 20px;
+			height: 20px;
+			border-radius:50%;
+			border: 0;
+			font-size: 20px;
+		}
+    </style>
+    <body>
+    	<header>&nbsp;<div class="box">
+    		<input type="text" id="input">
+    	</div></header>
+		<div class="boxx">
+			<div class="top">
+				未完成
+				<p id="todoCount">2</p>
+				<ul class="todoList">
+					<li>
+						<input type="text">
+						<p></p>
+						<button>×</button>
+					</li>
+				</ul>
+			</div>
+			<div class="bottom">
+				已完成
+				<p id="doneCount">1</p>
+				<ul class="doneList">
+					<li>
+						<input type="checkbox">
+						<p contenteditable="true">2</p>
+						<button>×</button>
+					</li>
+				</ul>
+			</div>	
+		</div>
+    </body>
+</html>
+<script>
+let todoList=document.querySelector('.todoList');
+	let doneList=document.querySelector('.doneList');
+	let todoCount=document.querySelector('#todoCount');
+	let doneCount=document.querySelector('#doneCount');
+	//初始化数据
+	function init(){
+		let things=[
+        {title:'买房子',done:false},
+        {title:'找工作',done:false},
+        {title:'泡面',done:true},
+        {title:'挤公交',done:true}
+      ]
+     	localStorage.things=JSON.stringify(things)
+	}
+	load();
+	function load(){
+		let todoString='';
+		let doneString='';
+		let todoNum=0
+		let doneNum=0
+
+		let data=localStorage.things;
+		if(!data){
+			init();
+		}
+		data=JSON.parse(localStorage.things);
+
+		data.forEach(function(value,index){
+			if(value.done==true){
+				doneNum++;
+				doneString+=`
+				<li id='${index}'>
+					<input type="checkbox">
+				    <p contenteditable="true">${value.title}</p>
+				    <button>x</button>
+				</li>
+				`
+			}else{
+				todoNum++;
+				todoString+=`
+				<li id='${index}'>
+					<input type="checkbox">
+				    <p contenteditable="true">${value.title}</p>
+				    <button>x</button>
+				</li>
+				`
+			}
+		})
+		todoList.innerText='';
+		doneList.innerText='';
+		todoList.innerHTML=todoString;
+		doneList.innerHTML=doneString;
+		todoCount.innerText=todoNum;
+		doneCount.innerText=doneNum;
+	}
+
+
+	let todocheck=todoList.querySelectorAll('input')
+	let donecheck=doneList.querySelectorAll('input')
+	
+	todoList.onclick=function(e){
+		let obj=e.target
+		let id=obj.parentNode.id;
+		if(obj.nodeName=='INPUT'){
+			console.log(id);
+			updata1(id);
+		}
+		if(obj.nodeName=='P'){
+			obj.onblur=function(){
+				let value=obj.innerText;
+				updata(id,value);
+			}
+		}
+		if(obj.nodeName=='BUTTON'){
+			del(id);
+		}
+	}
+	doneList.onclick=function(e){
+		let obj=e.target
+		let id=obj.parentNode.id;
+		if(obj.nodeName=='INPUT'){
+			updata2(id);
+		}
+		if(obj.nodeName=='P'){
+			obj.onblur=function(){
+				let value=obj.innerText;
+				updata(id,value);
+			}
+		}
+		if(obj.nodeName=='BUTTON'){
+			del(id);
+		}
+		
+	}
+function updata(id,value){
+	let data=JSON.parse(localStorage.things);
+	data[id].title=value;
+	localStorage.things=JSON.stringify(data);
+	load();
+}
+function updata1(id){
+	let data=JSON.parse(localStorage.things);
+	data[id].done=true;
+	localStorage.things=JSON.stringify(data);
+	load();
+}
+function updata2(id){
+	let data=JSON.parse(localStorage.things);
+	data[id].done=false;
+	localStorage.things=JSON.stringify(data);
+	load();
+}
+function del(id){
+	let data=JSON.parse(localStorage.things);
+	data.splice(id,1);
+	localStorage.things=JSON.stringify(data);
+	load();
+}
+let input=document.querySelector('header input')
+input.onkeydown=function(e){
+	if(e.keyCode==13){
+		add({title:this.value,done:false});
+		this.value='';
+	}
+}
+function add(obj){
+	let data=getData();
+	data.push(obj);
+	saveData(data);
+	load();
+}
+function getData(){
+	let data=JSON.parse(localStorage.things);
+	return data;
+}
+function saveData(data){
+	localStorage.things=JSON.stringify(data);
+}
+
+
+</script>
