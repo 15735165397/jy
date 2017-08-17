@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-05-27 22:18:19
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-08-11 09:16:44
+* @Last Modified time: 2017-08-17 18:01:59
 */
 
 
@@ -35,7 +35,7 @@ a{
 	height: 300px;
 	text-align: left;
 	top: 0px;
-	left: 450px;
+	left: 400px;
 	position: absolute;
 	opacity: 0;
 	transition: 1.7s all ease;
@@ -50,6 +50,8 @@ a{
 }
 .section1 .right .w{
 	font-size: 40px;
+	margin: 0 auto;
+	text-align: center;
 }
 .section1 .right .s{
 	font-size: 20px;
